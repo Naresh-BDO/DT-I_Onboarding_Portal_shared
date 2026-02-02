@@ -1,0 +1,19 @@
+<nav style="background:#1976d2;color:white;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between">
+  <div>
+    <a routerLink="/" style="color:white;text-decoration:none;font-weight:600">Onboarding Portal</a>
+  </div>
+  <div>
+    <span *ngIf="!auth.isAuthenticated()">
+      <a routerLink="/login" style="color:white">Login</a>
+    </span>
+    <span *ngIf="auth.isAuthenticated()">
+      <a routerLink="/new-joiner" *ngIf="auth.isAdmin()" style="color:white; margin-right:1rem;">New Joiner</a>
+      <span style="margin-right:1rem">Hi, {{ auth.getRoles() }}</span>
+      <button (click)="logout()" style="background:#fff;color:#1976d2;border:none;padding:0.3rem 0.8rem;border-radius:4px;cursor:pointer;">
+        Logout
+      </button>
+    </span>
+  </div>
+</nav>
+
+<!-- <router-outlet></router-outlet> -->

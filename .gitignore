@@ -1,0 +1,40 @@
+# ASP.NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.dbmdl
+*.pdb
+*.cache
+*.log
+*.vspscc
+*.vssscc
+TestResults/
+*.ncrunch*
+*.ndunit*
+_ReSharper*/
+*.DotSettings.user
+.idea/
+*.sln.ide
+
+# Angular
+node_modules/
+dist/
+tmp/
+out-tsc/
+coverage/
+.angular/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Others
+.env
+.env.local
+.env.*.local
+.DS_Store
+Thumbs.db

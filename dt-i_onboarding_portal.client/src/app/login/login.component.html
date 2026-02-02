@@ -1,0 +1,73 @@
+<section class="login-page">
+  <div class="card">
+    <header class="card__header">
+      <h1 class="title">Sign in</h1>
+      <p class="subtitle">Access your account to continue</p>
+    </header>
+
+    <form class="form" (ngSubmit)="onLogin()" novalidate>
+      <div class="field">
+        <label for="username" class="label">Username</label>
+        <input id="username" [(ngModel)]="username" name="username" class="input" placeholder="Enter your username"
+          required autocomplete="username" />
+      </div>
+
+      <div class="field">
+        <label for="password" class="label">Password</label>
+        <input id="password" type="password" [(ngModel)]="password" name="password" class="input"
+          placeholder="Enter your password" required autocomplete="current-password" />
+      </div>-
+
+      <div class="actions">
+        <button type="submit" class="btn btn--primary" [disabled]="isSubmitting || !username || !password">
+          <span *ngIf="!isSubmitting">Login</span>
+          <span *ngIf="isSubmitting" class="spinner" aria-hidden="true"></span>
+          <span class="sr-only" *ngIf="isSubmitting">Submitting…</span>
+        </button>
+        <button type="button" class="btn btn--ghost" (click)="whoAmI()">
+          Who Am I
+        </button>
+      </div>
+
+      <div class="alert alert--error" *ngIf="error">
+        {{ error }}
+      </div>
+      <div class="alert alert--success" *ngIf="success">
+        {{ success }}
+      </div>
+    </form>
+
+    <footer class="card__footer">
+      <small class="muted">
+        Tip: Make sure the API is running and CORS is enabled.
+      </small>
+    </footer>
+  </div>
+
+  <div *ngIf="userInfo" class="whoami">
+    <h2 class="whoami__title">Current User Info</h2>
+    <div class="whoami__card">
+      <div class="whoami__row">
+        <span class="whoami__label">Username:</span>
+        <span class="whoami__value">{{ userInfo.username || userInfo.name || userInfo.sub }}</span>
+      </div>
+      <div class="whoami__row">
+        <span class="whoami__label">Roles:</span>
+        <span class="whoami__value">
+          <ng-container *ngIf="userInfo.roles?.length; else noRoles">
+            <span *ngFor="let role of userInfo.roles; let last = last">
+              {{ role }}<span *ngIf="!last">, </span>
+            </span>
+          </ng-container>
+          <ng-template #noRoles>
+            <span>No roles found</span>
+          </ng-template>
+        </span>
+      </div>
+      <div class="whoami__row" *ngIf="userInfo.expires">
+        <span class="whoami__label">Token Expires:</span>
+        <span class="whoami__value">{{ userInfo.expires | date:'medium' }}</span>
+      </div>
+    </div>
+  </div>
+</section>

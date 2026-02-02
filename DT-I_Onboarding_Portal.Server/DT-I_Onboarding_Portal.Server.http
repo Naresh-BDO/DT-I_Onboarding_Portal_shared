@@ -1,0 +1,6 @@
+@DT_I_Onboarding_Portal.Server_HostAddress = http://localhost:5011
+
+GET {{DT_I_Onboarding_Portal.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

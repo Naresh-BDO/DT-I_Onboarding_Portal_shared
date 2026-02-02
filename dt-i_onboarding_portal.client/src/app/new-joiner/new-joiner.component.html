@@ -1,0 +1,95 @@
+
+<section class="new-joiner-page">
+  <div class="card">
+    <header class="card__header">
+      <h1 class="title">Add New Joiner</h1>
+      <p class="subtitle">Fill in the details to onboard a new employee</p>
+    </header>
+
+    <form class="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+      <!-- Full Name -->
+      <div class="field">
+        <label for="fullName" class="label">Full Name</label>
+        <input
+          id="fullName"
+          [(ngModel)]="dto.fullName"
+          name="fullName"
+          class="input"
+          placeholder="Enter full name"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <label for="email" class="label">Email</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="dto.email"
+          name="email"
+          class="input"
+          placeholder="Enter email"
+          required
+        />
+      </div>
+
+      <!-- Department -->
+      <div class="field">
+        <label for="department" class="label">Department</label>
+        <input
+          id="department"
+          [(ngModel)]="dto.department"
+          name="department"
+          class="input"
+          placeholder="Enter department"
+        />
+      </div>
+
+      <!-- Manager Name -->
+      <div class="field">
+        <label for="managerName" class="label">Manager Name</label>
+        <input
+          id="managerName"
+          [(ngModel)]="dto.managerName"
+          name="managerName"
+          class="input"
+          placeholder="Enter manager name"
+        />
+      </div>
+
+      <!-- Start Date -->
+      <div class="field">
+        <label for="startDate" class="label">Start Date</label>
+        <input
+          id="startDate"
+          type="date"
+          [(ngModel)]="dto.startDate"
+          name="startDate"
+          class="input"
+          required
+        />
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="submit" class="btn btn--primary" [disabled]="isSubmitting || f.invalid">
+          <span *ngIf="!isSubmitting">Create</span>
+          <span *ngIf="isSubmitting" class="spinner" aria-hidden="true"></span>
+          <span class="sr-only" *ngIf="isSubmitting">Submitting…</span>
+        </button>
+        <button type="button" class="btn btn--ghost" (click)="resetForm(f)">
+          Reset
+        </button>
+      </div>
+
+      <!-- Alerts -->
+      <div class="alert alert--error" *ngIf="error">{{ error }}</div>
+      <div class="alert alert--success" *ngIf="success">{{ success }}</div>
+    </form>
+
+    <footer class="card__footer">
+      <small class="muted">Tip: Ensure API is running and you have admin privileges.</small>
+    </footer>
+  </div>
+</section>

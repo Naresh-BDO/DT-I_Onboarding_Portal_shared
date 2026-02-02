@@ -1,0 +1,6 @@
+<div style="padding:1rem">
+  <h1>Welcome</h1>
+  <p *ngIf="!auth.isAuthenticated()">You are not logged in. <a routerLink="/login">Sign in</a></p>
+  <p *ngIf="auth.isAuthenticated()">You are logged in. Roles: {{ auth.getRoles() | json }}</p>
+  <p><a routerLink="/admin">Admin area</a> (requires Admin)</p>
+</div>
