@@ -8,6 +8,8 @@ namespace DT_I_Onboarding_Portal.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext() { }
+
         public ApplicationDbContext(DbContextOptions
             <ApplicationDbContext> opts) : base(opts) { }
 
@@ -15,6 +17,15 @@ namespace DT_I_Onboarding_Portal.Data
         public DbSet<AppRole> Roles { get; set; } = default!;
         public DbSet<AppUserRole> UserRoles { get; set; } = default!;
         public DbSet<NewJoiner> NewJoiners => Set<NewJoiner>();
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                var connectionString = "Server=GN401;Database=Bdo;Trusted_Connection=True;TrustServerCertificate=True;";
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
